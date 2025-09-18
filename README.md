@@ -9,6 +9,7 @@ Para produção, deve ser implementado um canal seguro para envio de códigos OT
 
 Dependencias:
 Servidor MySQL e PHP com SSL/HTTPS. 
+
 O script exige servidor WEB com HTTPS (mesmo em localhost). No cabeçalho, inclui instrções para testes em ambiente local (requestes e command cURL) com conexão SSL (certificado auto-assinado).
 
 Mais detalhes, no cabeçalho do próprio script.
