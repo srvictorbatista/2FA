@@ -122,7 +122,7 @@ $scriptDir = rtrim(str_replace('\\','/', dirname($_SERVER['SCRIPT_NAME'])), '/')
 $rewriteBase = ($scriptDir === '' || $scriptDir === '/') ? '/' : ($scriptDir . '/');
 $rootHt = __DIR__ . '/.htaccess';
 $rootHtContent = <<<HT
-# [ AFABB-RN API ]
+# [ 2FA API ]
 # Gerado automaticamente pelo sistema. tenha cuidado ao editar!
 
 RewriteEngine On
@@ -885,4 +885,5 @@ switch ("$method $rootEndpoint"){
 }
 
 /* -------------------------------------------------------------------- */
+
 
