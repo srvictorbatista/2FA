@@ -86,13 +86,13 @@ date_default_timezone_set('America/Belem');
    -------------------------------------------------------------------- */
 $config = [
   'DB_HOST' => 'mysql',
-  'DB_NAME' => '_AFABBRN',
-  'DB_USER' => 'Q7R3P9',
-  'DB_PASS' => 'F4N3QVUMC5CW#e',
-  'APP_SECRET' => '2DD916FEDF509A33AAB0708D77C125E5D2BC708292F70D3053108DE25D96CC43_Prod!',
+  'DB_NAME' => '_NOME_DO_BANCO_PRETENDIDO',
+  'DB_USER' => 'SEU_USUARIO',
+  'DB_PASS' => 'SUA_SENHA_SEGURA',
+  'APP_SECRET' => '2DD916FEDF509A33AAB0708D77C125E5D2BC708292F70D3053108DE25D96CC43_Dev!',
   'OTP_DIR' => __DIR__ . '/.otp_secret',
-  'OTP_TTL' => 120 * 60,                  // Tempo de expiração do OTP
-  'SESSION_IDLE_TIMEOUT' => 4 * 3600,     // Inatividade (sem lembrar-me)
+  'OTP_TTL' => 20 * 60,                   // Tempo de expiração do OTP (20 minutos)
+  'SESSION_IDLE_TIMEOUT' => 4 * 3600,     // Inatividade 4 horas (sem lembrar-me)
   'FRONT_END' => true, // USe: silent (permite include) | 1/true (exibir) | 0/false (desativar) frond end com exemplos de uso
   'COOKIE_NAME' => 'AFABB-AUTH_SESSION',
   'CIPHER' => 'aes-256-gcm'
@@ -883,4 +883,5 @@ switch ("$method $rootEndpoint"){
         }break;
   default: http_response_code(500); echo json_response(['error'=>'Erro no roteamento']); break;
 }
+
 /* -------------------------------------------------------------------- */
