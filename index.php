@@ -368,7 +368,7 @@ function check_level(?string $token=null): ?int {
    -------------------------------------------------------------------- */
 
 function api_register(PDO $pdo, array $config){
-  if((($nivel = check_level()) ?? 0) < 5){ echo json_response(['error'=>"Não autorizado"],401); return; }
+  if((($nivel = check_level()) ?? 0) < 5){ echo json_response(['error'=>"Não autorizado"],403); return; }
   $body = json_decode(file_get_contents('php://input'), true);
   $username = trim($body['username'] ?? '');
   $phone = trim($body['phone'] ?? '');
@@ -885,6 +885,7 @@ switch ("$method $rootEndpoint"){
 }
 
 /* -------------------------------------------------------------------- */
+
 
 
 
