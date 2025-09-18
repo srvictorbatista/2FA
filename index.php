@@ -85,8 +85,8 @@ date_default_timezone_set('America/Belem');
    CONFIGURAÇÃO (editar antes de uso)
    -------------------------------------------------------------------- */
 $config = [
-  'DB_HOST' => 'mysql',
-  'DB_NAME' => '_NOME_DO_BANCO_PRETENDIDO',
+  'DB_HOST' => 'SEU_SERVIDOR_MYSQL',
+  'DB_NAME' => '_NOME_DO_BANCO_PRETENDIDO', // Não precisa estar criado
   'DB_USER' => 'SEU_USUARIO',
   'DB_PASS' => 'SUA_SENHA_SEGURA',
   'APP_SECRET' => '2DD916FEDF509A33AAB0708D77C125E5D2BC708292F70D3053108DE25D96CC43_Dev!',
@@ -885,3 +885,4 @@ switch ("$method $rootEndpoint"){
 }
 
 /* -------------------------------------------------------------------- */
+
