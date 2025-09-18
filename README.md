@@ -6,4 +6,9 @@ Após informado os dados de conexão ao banco de dados (MySQL) o restante do amb
 
 ## *Observações:* 
 Para produção, deve ser implementado um canal seguro para envio de códigos OTP.  Recomendo SMS, WhatsApp.
+
+Dependencias:
+Servidor MySQL e PHP com SSL/HTTPS. 
+O script exige servidor WEB com HTTPS (mesmo em localhost). No cabeçalho, inclui instrções para testes em ambiente local (requestes e command cURL) com conexão SSL (certificado auto-assinado).
+
 Mais detalhes, no cabeçalho do próprio script.
