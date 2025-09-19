@@ -574,17 +574,20 @@ function api_update_user(PDO $pdo, array $config){
     if(!$hash || !password_verify($auth,$hash)){ log_event($pdo,$actorId,'falha_autorizacao_admin_invalida',['target'=>$targetUsername]); echo json_response(['error'=>'Autorização inválida'],403); return; }
   }
 
-  if(!empty($body['action']) && $body['action'] === 'delete'){
-    try{
-      $pdo->prepare("UPDATE users SET level=0, active=0 WHERE id=?")->execute([$targetId]);
-      log_event($pdo,$actorId,'usuario_desativado',['target_id'=>$targetId,'target_username'=>$targetUsername]);
-      echo json_response(['success'=>true,'message'=>'Usuário desativado (level=0, active=0)']);
-    } catch (Throwable $e){
-      log_event($pdo,$actorId,'erro_desativar_usuario',['target_id'=>$targetId,'msg'=>$e->getMessage()]);
-      echo json_response(['error'=>'Erro ao desativar usuário'],500);
+if(!empty($body['action']) && $body['action'] === 'delete'){
+    if($actorId === $targetId){ // Impede que o próprio usuário se exclua
+        echo json_response(['error' => "Não é permitido remover a si mesmo"], 403); return;
+    }
+    try {
+        $pdo->prepare("UPDATE users SET level=0, active=0 WHERE id=?")->execute([$targetId]);
+        log_event($pdo, $actorId, 'usuario_removido', ['target_id' => $targetId, 'target_username' => $targetUsername]);
+        echo json_response(['success' => true, 'message' => 'Usuário removido']);
+    } catch (Throwable $e) {
+        log_event($pdo, $actorId, 'erro_remover_usuario', ['target_id' => $targetId, 'msg' => $e->getMessage()]);
+        echo json_response(['error' => 'Erro ao remover usuário'], 500);
     }
     return;
-  }
+}
 
   // construir update dinâmico (somente campos enviados)
   $fields = [];
@@ -616,15 +619,19 @@ function api_update_user(PDO $pdo, array $config){
   if(empty($fields)){ log_event($pdo,$actorId,'nenhuma_alteracao_informada',['target'=>$targetUsername]); echo json_response(['error'=>'Nenhum campo para alterar'],400); return; }
 
   try{
-      if (isset($body['active']) && (int)$body['active'] > 0){
+      if(isset($body['active']) && (int)$body['active'] > 0){
           $fields[] = "activation_token_hash=NULL";
           $fields[] = "activated_at=NOW()";
           log_event($pdo, $actorId, 'usuario_ativado', ['target_id'=>$targetId,'target_username'=>$targetUsername]);
       }
-      if (isset($body['active']) && (int)$body['active'] == 0){
-          $fields[] = "activation_token_hash=NULL";
-          log_event($pdo, $actorId, 'usuario_desativado', ['target_id'=>$targetId,'target_username'=>$targetUsername]);
-      }
+      if(isset($body['active']) && (int)$body['active'] == 0){ // Impede que o próprio usuário se desative
+	    if($actorId === $targetId){
+	    	log_event($pdo,$actorId,'tentativa_destivar_ou_remover_a_si_mesmo',['target'=>$targetUsername]);
+	        echo json_response(['error' => "Não é permitido desativar ou remover a si mesmo"], 403); return;
+	    }
+	    $fields[] = "activation_token_hash=NULL";
+	    log_event($pdo, $actorId, 'usuario_desativado', ['target_id' => $targetId, 'target_username' => $targetUsername]);
+	}
 
       $params[] = $targetId;
       $sql = "UPDATE users SET ".implode(', ',$fields)." WHERE id=?";
@@ -1193,6 +1200,7 @@ switch ("$method $rootEndpoint"){
   default: http_response_code(500); echo json_response(['error'=>'Erro no roteamento']); break;
 }
 /* -------------------------------------------------------------------- */
+
 
 
 
