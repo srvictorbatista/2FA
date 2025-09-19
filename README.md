@@ -1,9 +1,9 @@
 # Meu 2FA (base)
 ### API de autenticação 2FA implementado em um único arquivo PHP. 
-** Aqui apresento seus recursos, endpoints, exemplos de uso (cURL/Insomnia) e recomendações de segurança. ** 
+**Aqui apresento seus recursos, endpoints, exemplos de uso (cURL/Insomnia) e recomendações de segurança.** 
 
 ## Descrição
-> Trata-se de um sistema de autenticação em 2 fatores base, para implementação (após modificação). Inclui endpoints principais (API), frontend e orientações de uso e configurações iniciais. Após informado os dados de conexão ao banco de dados (MySQL) o restante do ambiente é criado e configurado (automaticamente) pelo próprio script. Deixando o sistema pronto para uma demonstração incial (básica).
+> Tráta-se de um sistema de autenticação em 2 fatores base, para implementação (após modificação). Inclui endpoints principais (API), frontend e orientações de uso e configurações iniciais. Após informado os dados de conexão ao banco de dados (MySQL) o restante do ambiente é criado e configurado (automaticamente) pelo próprio script. Deixando o sistema pronto para uma demonstração incial (básica).
 
 <BR><BR>
 
