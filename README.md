@@ -168,7 +168,7 @@ for /f "delims=" %c in ('curl -s -k -H "Content-Type: application/json" -d "{\"u
 ```
 
 **NOTA:** Neste comando CMD, o JQ é o responsável por compirmir o retorno json, usado para extrair os dados de resposta. Caso não possua <a href="https://jqlang.org/download/" target="_blank">JQ para Windows</a> instalado em seu ambiente. Use a autenticação normal (em duas etapas). Ou uma das outras duas alternativas (PorwerShell/BASH).
-Caso deseje instalar JQ em seu **terminal CMD**, por linha de comando e adiciona-lo automaticamente ao seu ambiente Windows, use: 
+Caso deseje **instalar JQ em seu terminal CMD, por linha de comando** e adiciona-lo automaticamente ao seu ambiente Windows, use: 
 ``` 
 winget install jqlang.jq -h
 ```
