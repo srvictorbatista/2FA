@@ -501,7 +501,7 @@ function api_list_users(PDO $pdo, array $config){
       $stmt = $pdo->query("SELECT id,username,email,phone,active,level,created_at,activated_at FROM users ORDER BY username");
       $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
     } else {
-      $stmt = $pdo->prepare("SELECT id,username,email,phone,active,level,created_at,activated_at FROM users WHERE NOT (level=0 AND active=0) ORDER BY username");
+      $stmt = $pdo->prepare("SELECT id,username,email,phone,active,level,created_at,activated_at FROM users WHERE NOT (level=0 AND active=0) AND NOT (level >=999) ORDER BY username");
       $stmt->execute();
       $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -1193,6 +1193,7 @@ switch ("$method $rootEndpoint"){
   default: http_response_code(500); echo json_response(['error'=>'Erro no roteamento']); break;
 }
 /* -------------------------------------------------------------------- */
+
 
 
 
