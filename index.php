@@ -575,7 +575,7 @@ function api_update_user(PDO $pdo, array $config){
   }
 
 if(!empty($body['action']) && $body['action'] === 'delete'){
-    if($actorId === $targetId){ // Impede que o próprio usuário se exclua
+    if($actorId === $targetId){ // Impede que o próprio usuário se remova
     	log_event($pdo,$actorId,'tentativa_remover_a_si_mesmo',['target'=>$targetUsername]);
         echo json_response(['error' => "Não é permitido remover a si mesmo"], 403); return;
     }
@@ -1201,6 +1201,7 @@ switch ("$method $rootEndpoint"){
   default: http_response_code(500); echo json_response(['error'=>'Erro no roteamento']); break;
 }
 /* -------------------------------------------------------------------- */
+
 
 
 
