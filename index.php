@@ -1150,7 +1150,7 @@ $routes = [
 ];
 $method = $_SERVER['REQUEST_METHOD'];
 $requestPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) ?: '/';
-$apiPos = stripos($requestPath, '/api');
+$apiPos = stripos($requestPath, '/'.basename(__DIR__));
 if($apiPos === false){
   $scriptDirNormalized = rtrim(str_replace('\\','/', dirname($_SERVER['SCRIPT_NAME'])), '/');
   if($scriptDirNormalized !== '' && stripos($requestPath, $scriptDirNormalized) === 0){
@@ -1196,4 +1196,5 @@ switch ("$method $rootEndpoint"){
   default: http_response_code(500); echo json_response(['error'=>'Erro no roteamento']); break;
 }
 /* -------------------------------------------------------------------- */
+
 
