@@ -117,9 +117,9 @@
  */
 
 
-ini_set('display_errors', 1); error_reporting(E_ALL); // força exibição de erros
 declare(strict_types=1);
 date_default_timezone_set('America/Belem');
+ini_set('display_errors', 1); error_reporting(E_ALL); // força exibição de erros
 
 
 /* --------------------------------------------------------------------
@@ -1196,3 +1196,4 @@ switch ("$method $rootEndpoint"){
   default: http_response_code(500); echo json_response(['error'=>'Erro no roteamento']); break;
 }
 /* -------------------------------------------------------------------- */
+
