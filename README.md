@@ -155,13 +155,13 @@ powershell -NoProfile -Command "[System.Net.ServicePointManager]::ServerCertific
 
 **BASH:**
 ```bash
-curl -sk -H "Content-Type: application/json" -d '{"username":"admin","password":"admin123"}' https://<URL_BASE>/login | jq -r '.code' | xargs -I{} curl -sk -H "Content-Type: application/json" -d '{"code":"{}","remember_me":true}' https://<URL_BASE>/verify-otp | jq -c .
+curl -sk -H "Content-Type: application/json" -d '{"username":"admin","password":"admin123"}' <URL_BASE>/login | jq -r '.code' | xargs -I{} curl -sk -H "Content-Type: application/json" -d '{"code":"{}","remember_me":true}' <URL_BASE>/verify-otp | jq -c .
 ``` 
 
 
 **CMD** (requer ambiente Windows com JQ instalado):
 ```bash
-for /f "delims=" %c in ('curl -s -k -H "Content-Type: application/json" -d "{\"username\":\"admin\",\"password\":\"admin123\"}" "https://<URL_BASE>/login" ^| jq -r ".code"') do @curl -s -k -H "Content-Type: application/json" -d "{\"code\":\"%c\",\"remember_me\":true}" "https://<URL_BASE>/verify-otp" ^| jq -c .
+for /f "delims=" %c in ('curl -s -k -H "Content-Type: application/json" -d "{\"username\":\"admin\",\"password\":\"admin123\"}" "<URL_BASE>/login" ^| jq -r ".code"') do @curl -s -k -H "Content-Type: application/json" -d "{\"code\":\"%c\",\"remember_me\":true}" "<URL_BASE>/verify-otp" ^| jq -c .
 ```
 
 <BR>
