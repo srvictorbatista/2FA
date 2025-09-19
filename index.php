@@ -934,7 +934,7 @@ $CSS
   <input id="adm_authorization" class="input" type="password" placeholder="Autorização (ADM)*">
   <div class="row" style="margin-top:8px">
     <button class="btn" onclick="adminUpdateUser()">Salvar alterações</button>
-    <button class="btn" style="background:#EF4444" onclick="adminDeleteUser()">Excluir</button>
+    <button class="btn" style="background:#EF4444" onclick="adminDeleteUser()">Remover</button>
   </div>
 </div>
 
@@ -942,7 +942,7 @@ $CSS
 
 <div class="card" id="session_ops">
   <h3 class="h">Sessão</h3>
-  <button class="btn" onclick="me()">Me (dados)</button>
+  <button class="btn" onclick="me()">Me (meus dados)</button>
   <button class="btn" style="margin-top:6px;background:#EF4444" onclick="logout()">Logout</button>
   <BR><BR>
   <div class="footer"><STRONG style="font-size:1.2em;">Observação:</STRONG> Em produção o código 2FA deve ser enviado por canal seguro (WhatsApp/SMS/e-mail). Aqui ele é retornado na API apenas para demonstração.</div>
@@ -1193,6 +1193,7 @@ switch ("$method $rootEndpoint"){
   default: http_response_code(500); echo json_response(['error'=>'Erro no roteamento']); break;
 }
 /* -------------------------------------------------------------------- */
+
 
 
 
