@@ -32,7 +32,7 @@
 - [Recursos adicionais](#recursos-adicionais)
 - [Endpoints principais](#endpoints-principais)
 - [Regras e autorizações](#regras-importantes-e-autorizações)
-- [Exemplos de uso](#exemplos-de-uso-—-curl-uma-linha-e-notas)
+- [Exemplos de uso](#exemplos-de-uso-—-curl-e-notas)
 - [Observações e recomendações](#observações-e-recomendações-importantes)
 - [Integração com o frontend](#integração-com-o-frontend-incluído)
 - [Logs e auditoria](#logs-e-auditoria)
@@ -98,7 +98,7 @@ if((($nivel = check_level()) ?? 0) < 5){ echo json_response(['error'=>"Não auto
 * **Campos omitted**: se um campo não for enviado, permanece inalterado. Se `new_password`/`confirm` não enviados, a senha permanece.
 * **Logs**: toda tentativa (sucesso ou falha) deve gerar um evento em `logs` sem armazenar senhas em texto.
 
-## Exemplos de uso — cURL (uma linha) e notas
+## Exemplos de uso — cURL e notas
 
 > **AVISO:** Não use `curl -k` (ignorar verificação de certificados) em hosts de produção.
 > ```-k``` ignora a verificação de certificados auto-assinados (use com cautela em ambientes de desenvolvimento). 
