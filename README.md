@@ -32,7 +32,7 @@
 - [Recursos adicionais](#recursos-adicionais)
 - [Endpoints principais](#endpoints-principais)
 - [Regras e autorizações](#regras-importantes-e-autorizações)
-- [Exemplos de uso](#exemplos-de-uso-—-curl-e-notas)
+- [Exemplos de uso](#exemplos-de-uso--curl-e-notas)
 - [Observações e recomendações](#observações-e-recomendações-importantes)
 - [Integração com o frontend](#integração-com-o-frontend-incluído)
 - [Logs e auditoria](#logs-e-auditoria)
