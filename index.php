@@ -712,12 +712,9 @@ $JS = <<<'JS_COMMON'
 /* calcula API_BASE corretamente independentemente de subpasta */
 (function(){
   const pathname = location.pathname || '/';
-  const idx = pathname.toLowerCase().indexOf('/api');
-  let prefix = '';
-  if(idx >= 0) prefix = pathname.slice(0, idx);
-  else prefix = pathname.replace(/\/index\.php$/i,'').replace(/\/$/,'');
+  let prefix = pathname.replace(/\/index\.php$/i,'').replace(/\/$/,'');
   if(prefix === '/') prefix = '';
-  window.API_BASE = location.origin + prefix + '/api';
+  window.API_BASE = location.origin + prefix + '/';
 })();
 
 function show(msg, ok = true){ const el=document.getElementById('messages'); el.style.color=ok?'#9EE7A7':'#F7A7A7'; el.innerHTML=msg; updateTokenBadge(); }
@@ -1196,5 +1193,6 @@ switch ("$method $rootEndpoint"){
   default: http_response_code(500); echo json_response(['error'=>'Erro no roteamento']); break;
 }
 /* -------------------------------------------------------------------- */
+
 
 
