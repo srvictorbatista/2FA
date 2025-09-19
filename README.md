@@ -259,6 +259,6 @@ Para reports, dúvidas ou sugestões de melhorias, entre em contato com  o autor
 
 ## Autor
 
-**Sr. Victor Batista**  [t.me/LevyMac](https://t.me/LevyMac)
+**<a href="https://t.me/LevyMac" target="_blank">Sr. Victor Batista</a>**
 
 
