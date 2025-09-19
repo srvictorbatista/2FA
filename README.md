@@ -145,7 +145,8 @@ Resposta (exemplo): `{"success":true,"token":"<SESSION_TOKEN>","message":"Autent
 ### Login em uma linha (via terminal) 
 Quando em terminais (prompts BASH/ASH/CMD/PowerShell) o token de sessão pode ser armazenado em variavel de ambiente a critério do utilizador. Embora este recurso esteja disponível, seu uso em produção não é recomendado.
 
-*Em prompts CMD é necessário ter <a href="https://jqlang.org/download/" target="_blank">JQ para Windows</a> instalado e disponivel no ambiente, por dependencia.
+*Em prompts CMD é necessário ter <a href="https://jqlang.org/download/" target="_blank">JQ para Windows</a> instalado e disponivel no ambiente, por dependência.
+Em ambientes Mac e Debian, JQ já vem incluso nativamente.
 
 Exemplo de login completo em uma linha:
 
@@ -166,7 +167,12 @@ curl -sk -H "Content-Type: application/json" -d '{"username":"admin","password":
 for /f "delims=" %c in ('curl -s -k -H "Content-Type: application/json" -d "{\"username\":\"admin\",\"password\":\"admin123\"}" "<URL_BASE>/login" ^| jq -r ".code"') do @curl -s -k -H "Content-Type: application/json" -d "{\"code\":\"%c\",\"remember_me\":true}" "<URL_BASE>/verify-otp" ^| jq -c .
 ```
 
-JQ é o responsável por compirmir o retorno json, usado para extrair os dados de resposta. Caso não possua <a href="https://jqlang.org/download/" target="_blank">JQ para Windows</a> instalado em seu ambiente. Use a autenticação normal (em duas etapas). Ou uma das outras duas alternativas (PorwerShell/BASH).
+**NOTA:** Neste comando CMD, o JQ é o responsável por compirmir o retorno json, usado para extrair os dados de resposta. Caso não possua <a href="https://jqlang.org/download/" target="_blank">JQ para Windows</a> instalado em seu ambiente. Use a autenticação normal (em duas etapas). Ou uma das outras duas alternativas (PorwerShell/BASH).
+Caso deseje instalar JQ em seu **terminal CMD**, por linha de comando e adiciona-lo automaticamente ao seu ambiente Windows, use: 
+``` 
+winget install jqlang.jq -h
+```
+Após executar este comando é necessário fechar e reabrir o seu terminal CMD.
 
 <BR>
 
