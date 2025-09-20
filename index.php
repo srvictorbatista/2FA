@@ -658,7 +658,8 @@ function api_logout(PDO $pdo, array $config){
   $stmt = $pdo->prepare("SELECT id,user_id FROM sessions WHERE token_hash=? LIMIT 1"); $stmt->execute([$th]); $s = $stmt->fetch(PDO::FETCH_ASSOC);
   if($s){
     $pdo->prepare("DELETE FROM sessions WHERE id=?")->execute([$s['id']]);
-    setcookie('AFABB-AUTH_SESSION', '', time() - 3600, '/', '', true, true); // limpa token do cookie
+    // limpa token do cookie 
+    setcookie($config['COOKIE_NAME'],'',['expires'=>time() - 3600,'path'=>'/','domain'=>$_SERVER['HTTP_HOST'],'secure'=>!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS']!=='off','httponly'=>true,'samesite'=>'Strict']);
     log_event($pdo,(int)$s['user_id'],'logout_de_sessão',[]);
     echo json_response(['success'=>true,'message'=>'Logout realizado']);
   } else { echo json_response(['error'=>'Sessão não encontrada'],404); }
@@ -1201,6 +1202,7 @@ switch ("$method $rootEndpoint"){
   default: http_response_code(500); echo json_response(['error'=>'Erro no roteamento']); break;
 }
 /* -------------------------------------------------------------------- */
+
 
 
 
