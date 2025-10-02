@@ -411,7 +411,9 @@ function api_register(PDO $pdo, array $config){
   if((($nivel = check_level()) ?? 0) < 5){ echo json_response(['error'=>"Não autorizado"],403); return; }
   $body = json_decode(file_get_contents('php://input'), true);
   $username = trim($body['username'] ?? '');
-  $phone = trim($body['phone'] ?? '');
+  //$phone = trim(preg_replace('/\D/', '', $body['phone']) ?? '');
+  $phone = preg_replace('/^0+/', '', preg_replace('/\D+/', '', $body['phone'] ?? ''));
+  $phone = preg_replace('/\D/', '', $phone); $phone = strlen($phone) < 12 ? (substr($phone,0,1)=='0' ? '55'.substr($phone,1) : (strlen($phone)==8 ? '5584'.$phone : (strlen($phone)==10 ? '55'.$phone : '55'.$phone))) : $phone; // Trata DDD e DDI
   $email = trim($body['email'] ?? '');
   $password = $body['password'] ?? '';
   if(!$username || !$phone || !$password){ echo json_response(['error'=>'username, telefone e password obrigatórios'],400); return; }
@@ -1202,6 +1204,7 @@ switch ("$method $rootEndpoint"){
   default: http_response_code(500); echo json_response(['error'=>'Erro no roteamento']); break;
 }
 /* -------------------------------------------------------------------- */
+
 
 
 
